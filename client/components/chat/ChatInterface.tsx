@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Send, Mic, RotateCcw, Bookmark, HelpCircle, Star, MapPin, GraduationCap, Users } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { chatStorage } from "@/lib/chatStorage";
 
 interface Message {
   id: string;
@@ -88,6 +89,7 @@ export default function ChatInterface({ mode, onToggleMode }: ChatInterfaceProps
   const [inputValue, setInputValue] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [showQuickQuestions, setShowQuickQuestions] = useState(true);
+  const [currentConversationId, setCurrentConversationId] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -97,6 +99,39 @@ export default function ChatInterface({ mode, onToggleMode }: ChatInterfaceProps
   useEffect(() => {
     scrollToBottom();
   }, [messages]);
+
+  // Check for resumed conversation on component mount
+  useEffect(() => {
+    const resumeData = localStorage.getItem("resume_conversation");
+    if (resumeData) {
+      try {
+        const conversation = JSON.parse(resumeData);
+        setMessages(conversation.messages);
+        setCurrentConversationId(conversation.id);
+        setShowQuickQuestions(false);
+        localStorage.removeItem("resume_conversation");
+      } catch (error) {
+        console.error("Error loading resumed conversation:", error);
+      }
+    }
+  }, []);
+
+  // Auto-save conversations when messages change
+  useEffect(() => {
+    // Only save if we have more than just the initial welcome message
+    if (messages.length > 1) {
+      if (currentConversationId) {
+        // Update existing conversation
+        chatStorage.updateConversation(currentConversationId, messages);
+      } else {
+        // Save new conversation and get the ID
+        const newId = chatStorage.saveConversation(messages);
+        if (newId) {
+          setCurrentConversationId(newId);
+        }
+      }
+    }
+  }, [messages, currentConversationId]);
 
   const handleQuickQuestion = (question: string) => {
     setShowQuickQuestions(false);

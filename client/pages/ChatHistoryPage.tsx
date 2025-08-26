@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import MainLayout from "@/components/layout/MainLayout";
-import { SavedConversation } from "@/lib/chatStorage";
 import ChatHistory from "@/components/chat/ChatHistory";
+import { SavedConversation } from "@/lib/chatStorage";
 
 export default function ChatHistoryPage() {
   const navigate = useNavigate();

@@ -16,16 +16,13 @@ interface MainLayoutProps {
 }
 
 const navigation = [
-  { name: "School Search", icon: Search, href: "/", current: true },
+  { name: "Kids Queue Chat", icon: Search, href: "/", current: true },
   {
     name: "Chat History",
     icon: MessageCircle,
     href: "/chat-history",
     current: false,
   },
-  { name: "Saved Schools", icon: Heart, href: "/saved", current: false },
-  { name: "My Profile", icon: BookOpen, href: "/profile", current: false },
-  { name: "Settings", icon: Settings, href: "/settings", current: false },
 ];
 
 export default function MainLayout({ children }: MainLayoutProps) {
@@ -51,14 +48,17 @@ export default function MainLayout({ children }: MainLayoutProps) {
         <div className="flex h-full flex-col">
           {/* Header */}
           <div className="flex h-16 items-center justify-between px-6 border-b border-sidebar-border">
-            <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-                <BookOpen className="h-5 w-5 text-primary-foreground" />
-              </div>
-              <span className="text-lg font-semibold text-sidebar-foreground">
-                SchoolFinder
-              </span>
-            </div>
+            <Link to="/">
+          <figure>
+            <img
+              src="/logo.svg"
+              alt="logo"
+              width={200}
+              height={50}
+              className="w-full"
+            />
+          </figure>
+        </Link>
             <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
               <X className="h-5 w-5 text-sidebar-foreground" />
             </button>
