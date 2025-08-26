@@ -239,7 +239,7 @@ export default function ChatInterface({ mode, onToggleMode }: ChatInterfaceProps
       {/* Header */}
       <div className="flex items-center justify-between border-b border-purple-200 bg-white/80 backdrop-blur-sm p-4 shadow-sm">
         <div>
-          <h1 className="text-xl font-bold text-purple-900">School Search Q&A</h1>
+          <h1 className="text-xl font-bold text-purple-900">Kidsqueue Q&A</h1>
           <p className="text-sm text-purple-600">
             Get answers to all your school-related questions
           </p>
