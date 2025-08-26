@@ -82,7 +82,7 @@ export default function ChatInterface({ mode, onToggleMode }: ChatInterfaceProps
     {
       id: "1",
       type: "assistant",
-      content: "Welcome to SchoolFinder Q&A! I'm here to answer all your questions about finding the perfect school for your child. Click on any question below to get started, or ask me anything directly.",
+      content: "Welcome to Kidsqueue Q&A! I'm here to answer all your questions about finding the perfect school for your child. Click on any question below to get started, or ask me anything directly.",
       timestamp: new Date(),
     }
   ]);
@@ -279,7 +279,7 @@ export default function ChatInterface({ mode, onToggleMode }: ChatInterfaceProps
                     <div className="h-6 w-6 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 flex items-center justify-center">
                       <span className="text-white text-xs font-bold">A</span>
                     </div>
-                    <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">Answer</span>
+                    <span className="text-xs font-medium text-purple-600 uppercase tracking-wide">kidsqueue Ai</span>
                   </div>
                   <div className="prose prose-purple prose-sm max-w-none">
                     <p className="text-gray-700 leading-relaxed whitespace-pre-line">{message.content}</p>
