@@ -91,7 +91,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
       </div>
 
       {/* Main content */}
-      <div className="lg:pl-64">
+      <div>
         {/* Mobile header */}
         <div className="flex h-16 items-center justify-between border-b border-border bg-card px-4 lg:hidden">
           <button
