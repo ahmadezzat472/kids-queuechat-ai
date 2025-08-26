@@ -9,6 +9,7 @@ import {
   X,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { Link } from "react-router-dom";
 
 interface MainLayoutProps {
   children: ReactNode;
@@ -68,8 +69,8 @@ export default function MainLayout({ children }: MainLayoutProps) {
             <ul className="space-y-1">
               {navigation.map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.href}
                     className={cn(
                       "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                       item.current
@@ -79,7 +80,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                   >
                     <item.icon className="h-5 w-5" />
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
