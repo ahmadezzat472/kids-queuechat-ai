@@ -1,5 +1,13 @@
 import { ReactNode, useState } from "react";
-import { Search, MessageCircle, BookOpen, Heart, Settings, Menu, X } from "lucide-react";
+import {
+  Search,
+  MessageCircle,
+  BookOpen,
+  Heart,
+  Settings,
+  Menu,
+  X,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface MainLayoutProps {
@@ -8,7 +16,12 @@ interface MainLayoutProps {
 
 const navigation = [
   { name: "School Search", icon: Search, href: "/", current: true },
-  { name: "Chat History", icon: MessageCircle, href: "/chat-history", current: false },
+  {
+    name: "Chat History",
+    icon: MessageCircle,
+    href: "/chat-history",
+    current: false,
+  },
   { name: "Saved Schools", icon: Heart, href: "/saved", current: false },
   { name: "My Profile", icon: BookOpen, href: "/profile", current: false },
   { name: "Settings", icon: Settings, href: "/settings", current: false },
@@ -21,17 +34,19 @@ export default function MainLayout({ children }: MainLayoutProps) {
     <div className="min-h-screen bg-background flex">
       {/* Mobile sidebar overlay */}
       {sidebarOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 bg-black/50 lg:hidden"
           onClick={() => setSidebarOpen(false)}
         />
       )}
 
       {/* Sidebar */}
-      <div className={cn(
-        "fixed inset-y-0 left-0 z-50 w-64 bg-sidebar transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
-        sidebarOpen ? "translate-x-0" : "-translate-x-full"
-      )}>
+      <div
+        className={cn(
+          "fixed inset-y-0 left-0 z-50 w-64 bg-sidebar transform transition-transform duration-200 ease-in-out lg:translate-x-0 lg:static lg:inset-0",
+          sidebarOpen ? "translate-x-0" : "-translate-x-full",
+        )}
+      >
         <div className="flex h-full flex-col">
           {/* Header */}
           <div className="flex h-16 items-center justify-between px-6 border-b border-sidebar-border">
@@ -39,12 +54,11 @@ export default function MainLayout({ children }: MainLayoutProps) {
               <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
                 <BookOpen className="h-5 w-5 text-primary-foreground" />
               </div>
-              <span className="text-lg font-semibold text-sidebar-foreground">SchoolFinder</span>
+              <span className="text-lg font-semibold text-sidebar-foreground">
+                SchoolFinder
+              </span>
             </div>
-            <button
-              className="lg:hidden"
-              onClick={() => setSidebarOpen(false)}
-            >
+            <button className="lg:hidden" onClick={() => setSidebarOpen(false)}>
               <X className="h-5 w-5 text-sidebar-foreground" />
             </button>
           </div>
@@ -60,7 +74,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
                       "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors",
                       item.current
                         ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                        : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground",
                     )}
                   >
                     <item.icon className="h-5 w-5" />
@@ -108,9 +122,7 @@ export default function MainLayout({ children }: MainLayoutProps) {
         </div>
 
         {/* Page content */}
-        <main className="flex-1">
-          {children}
-        </main>
+        <main className="flex-1">{children}</main>
       </div>
     </div>
   );
